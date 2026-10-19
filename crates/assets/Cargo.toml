@@ -16,7 +16,7 @@ links = "gpui-kit-default-icons"
 
 [dependencies]
 anyhow.workspace = true
-gpui.workspace = true
+gpui = { workspace = true, optional = true }
 gpui-fast = { workspace = true, optional = true }
 log.workspace = true
 
@@ -34,3 +34,4 @@ wasm-bindgen-futures = "0.4"
 
 [features]
 gpui-fast = ["dep:gpui-fast"]
+gpui-fork = ["dep:gpui"]

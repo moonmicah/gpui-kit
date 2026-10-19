@@ -324,3 +324,20 @@ Consumers must align their direct GPUI dependency with this revision.
 Validation: `bun script/check-gpui-pin.ts` checks all six requirements. The
 consuming NyaTerm workspace validates the dependency alignment on Windows;
 the Zed fork records its passing native lifecycle tests in NYATERM.md.
+
+## 2026-10-19 gpui-fast only dependencies
+
+The kit, base, component and assets crates now declare the legacy nyakang/zed
+GPUI engine as an opt-in dependency (`gpui`, `gpui_platform`, `gpui_web`) behind
+a new `gpui-fork` feature. The feature stays in this fork's default set so the
+upstream workspace, story and examples keep building unchanged. Feature
+references to the legacy engine use optional-dependency syntax
+(`gpui?/test-support`, `gpui?/profiler`, `gpui?/inspector`), while
+`gpui-fast` and `gpui-fast-platform` are now unconditional because every code
+path in the fast engine uses them.
+
+NyaTerm consumes this branch with `default-features = false` plus
+`features = ["gpui-fast", "component", "assets"]`, so neither `gpui 0.2.2` nor
+`gpui_platform 0.1.0` enters its dependency graph. Before this change both were
+compiled on every NyaTerm build even though no runtime path used them.
+No public API or behavior changes.
