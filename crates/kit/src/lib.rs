@@ -121,6 +121,12 @@ pub use crate as gpui;
 #[doc(hidden)]
 pub const GPUI_FAST: bool = cfg!(feature = "gpui-fast");
 
+/// A centered window of `size`, hiding the backend's `WindowBounds::centered`
+/// signature: GPUI Fast takes an explicit display id, zed's GPUI does not.
+pub fn window_bounds_centered(size: Size<Pixels>, cx: &mut App) -> WindowBounds {
+    WindowBounds::centered(None, size, cx)
+}
+
 /// UI integration testing: render real components in headless windows, dispatch
 /// pointer and keyboard events, and assert state, focus, layout and callbacks.
 /// Run tests with `#[gpui_kit::test]`; use this module to interact with their UI.

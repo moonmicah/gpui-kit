@@ -1,5 +1,3 @@
-#[cfg(any(feature = "gpui-fast", test))]
-use gpui::IntoElement;
 mod selection_paint;
 
 use super::state::ParagraphRows;
@@ -1157,15 +1155,6 @@ impl Inline {
     }
 }
 
-#[cfg(feature = "gpui-fast")]
-
-impl IntoElement for Inline {
-    type Element = Self;
-
-    fn into_element(self) -> Self::Element {
-        self
-    }
-}
 
 impl Element for Inline {
     type RequestLayoutState = ();

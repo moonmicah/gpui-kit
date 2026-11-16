@@ -1,10 +1,12 @@
+extern crate gpui_kit as gpui;
+
 mod app;
 mod repository;
 
 use std::path::PathBuf;
 
 use gpui_kit::{
-    AppContext as _, SharedString, WindowBounds, WindowOptions, component::TitleBar, px, size,
+    AppContext as _, SharedString, WindowOptions, component::TitleBar, px, size,
 };
 
 use app::Tig;
@@ -90,7 +92,7 @@ fn main() {
             gpui_kit::init(cx);
             app::init(cx);
             let options = WindowOptions {
-                window_bounds: Some(WindowBounds::centered(size(px(1400.), px(860.)), cx)),
+                window_bounds: Some(gpui_kit::window_bounds_centered(size(px(1400.), px(860.)), cx)),
                 window_min_size: Some(size(px(1100.), px(640.))),
                 app_id: Some("gpui-kit-tig".into()),
                 ..TitleBar::window_options()

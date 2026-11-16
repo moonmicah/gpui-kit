@@ -3,9 +3,6 @@
 //! Every anchored surface in Base resolves its position here so that flipping,
 //! alignment, and viewport clamping cannot drift apart between popups,
 //! tooltips, and menus.
-#[cfg(feature = "gpui-fast")]
-use gpui::IntoElement;
-
 use gpui::{
     Anchor, AnyElement, App, Bounds, Decorations, Display, Edges, Element, GlobalElementId,
     Half as _, HitboxBehavior, InspectorElementId, LayoutId, ParentElement, Pixels, Point,
@@ -482,15 +479,6 @@ impl Element for Positioner {
     }
 }
 
-#[cfg(feature = "gpui-fast")]
-
-impl IntoElement for Positioner {
-    type Element = Self;
-
-    fn into_element(self) -> Self::Element {
-        self
-    }
-}
 
 #[cfg(test)]
 mod tests {

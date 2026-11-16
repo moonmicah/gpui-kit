@@ -1,8 +1,6 @@
 //! Bridge the virtualized code surface to Base's window text selection.
 //! Content keys are exact source offsets, so copying does not depend on which
 //! rows are still painted when the gesture ends.
-#[cfg(feature = "gpui-fast")]
-use gpui::IntoElement;
 use std::{
     cell::{Cell, RefCell},
     collections::BTreeSet,
@@ -247,14 +245,6 @@ impl CodeText {
     }
 }
 
-#[cfg(feature = "gpui-fast")]
-
-impl IntoElement for CodeText {
-    type Element = Self;
-    fn into_element(self) -> Self {
-        self
-    }
-}
 
 impl Element for CodeText {
     type RequestLayoutState = ();
@@ -442,14 +432,7 @@ impl SelectionLayer {
     }
 }
 
-#[cfg(feature = "gpui-fast")]
 
-impl IntoElement for SelectionLayer {
-    type Element = Self;
-    fn into_element(self) -> Self {
-        self
-    }
-}
 impl Element for SelectionLayer {
     type RequestLayoutState = ();
     type PrepaintState = Hitbox;

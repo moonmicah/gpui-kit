@@ -389,14 +389,6 @@ impl WebViewElement {
     }
 }
 
-impl IntoElement for WebViewElement {
-    type Element = WebViewElement;
-
-    fn into_element(self) -> Self::Element {
-        self
-    }
-}
-
 impl Element for WebViewElement {
     type RequestLayoutState = ();
     type PrepaintState = Option<Hitbox>;

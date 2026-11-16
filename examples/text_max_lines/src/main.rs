@@ -240,13 +240,18 @@ fn main() {
         gpui_kit::init(cx);
 
         // The document embeds remote images; without an HTTP client they
-        // silently never load.
-        let http_client = reqwest_client::ReqwestClient::user_agent("gpui-component/example")
-            .expect("Failed to create the HTTP client");
-        cx.set_http_client(std::sync::Arc::new(http_client));
+        // silently never load. GPUI Fast snapshots its own `HttpClient` trait,
+        // which zed's reqwest_client does not implement, so the example keeps
+        // the default client there.
+        #[cfg(not(feature = "gpui-fast"))]
+        {
+            let http_client = reqwest_client::ReqwestClient::user_agent("gpui-component/example")
+                .expect("Failed to create the HTTP client");
+            cx.set_http_client(std::sync::Arc::new(http_client));
+        }
 
         let window_options = WindowOptions {
-            window_bounds: Some(WindowBounds::centered(size(px(720.), px(680.)), cx)),
+            window_bounds: Some(gpui_kit::window_bounds_centered(size(px(720.), px(680.)), cx)),
             ..Default::default()
         };
 

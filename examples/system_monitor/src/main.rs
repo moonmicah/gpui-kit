@@ -610,8 +610,9 @@ fn main() {
             cx.quit();
         });
 
+        let centered = gpui_kit::window_bounds_centered(size(px(680.), px(600.)), cx);
         let window_options = WindowOptions {
-            window_bounds: Some(WindowBounds::centered(size(px(680.), px(600.)), cx)),
+            window_bounds: Some(centered),
             ..TitleBar::window_options()
         };
 

@@ -1,5 +1,3 @@
-#[cfg(feature = "gpui-fast")]
-use gpui::IntoElement;
 use std::ops::Range;
 
 use gpui::{
@@ -147,15 +145,6 @@ fn selection_quad_bounds(
     quads
 }
 
-#[cfg(feature = "gpui-fast")]
-
-impl IntoElement for SelectableText {
-    type Element = Self;
-
-    fn into_element(self) -> Self::Element {
-        self
-    }
-}
 
 impl Element for SelectableText {
     type RequestLayoutState = TextSelectionHandle;

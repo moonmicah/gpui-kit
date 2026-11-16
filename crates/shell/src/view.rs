@@ -476,14 +476,6 @@ struct NestingFrame {
     element: AnyElement,
 }
 
-impl IntoElement for NestingFrame {
-    type Element = Self;
-
-    fn into_element(self) -> Self::Element {
-        self
-    }
-}
-
 impl Element for NestingFrame {
     type RequestLayoutState = ();
     type PrepaintState = ();

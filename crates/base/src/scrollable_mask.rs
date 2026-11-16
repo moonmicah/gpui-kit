@@ -174,15 +174,6 @@ impl RoundedFrameCover {
     }
 }
 
-#[cfg(feature = "gpui-fast")]
-
-impl IntoElement for RoundedFrameCover {
-    type Element = Self;
-
-    fn into_element(self) -> Self::Element {
-        self
-    }
-}
 
 impl Element for RoundedFrameCover {
     type RequestLayoutState = ();
@@ -411,15 +402,6 @@ impl<H: ScrollbarHandle + Clone> ScrollableMask<H> {
     }
 }
 
-#[cfg(feature = "gpui-fast")]
-
-impl<H: ScrollbarHandle + Clone> IntoElement for ScrollableMask<H> {
-    type Element = Self;
-
-    fn into_element(self) -> Self::Element {
-        self
-    }
-}
 
 impl<H: ScrollbarHandle + Clone> Element for ScrollableMask<H> {
     type RequestLayoutState = ();

@@ -2,7 +2,6 @@
 //!
 //! Native accessibility properties are read automatically. Applications register
 //! identified GPUI elements with `.test_support()`, without supplying test-only state.
-#[cfg(feature = "gpui-fast")]
 use gpui::IntoElement;
 use gpui::{
     App, Bounds, Element, ElementId, FocusHandle, GlobalElementId, Hitbox, InspectorElementId,
@@ -647,13 +646,7 @@ impl<E: Element> ObservedText<E> {
         ObservedText::new(self.inner.id(id), self.text, self.alternative)
     }
 }
-#[cfg(feature = "gpui-fast")]
-impl<E: Element> IntoElement for ObservedText<E> {
-    type Element = Self;
-    fn into_element(self) -> Self {
-        self
-    }
-}
+
 impl<E: Element> Element for ObservedText<E> {
     type RequestLayoutState = E::RequestLayoutState;
     type PrepaintState = E::PrepaintState;

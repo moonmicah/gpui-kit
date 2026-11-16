@@ -1,5 +1,3 @@
-#[cfg(any(feature = "gpui-fast", test))]
-use gpui::IntoElement;
 use std::{cell::Cell, ops::Deref, panic::Location, rc::Rc};
 
 use instant::{Duration, Instant};
@@ -1192,15 +1190,6 @@ impl Scrollbar {
     }
 }
 
-#[cfg(feature = "gpui-fast")]
-
-impl IntoElement for Scrollbar {
-    type Element = Self;
-
-    fn into_element(self) -> Self::Element {
-        self
-    }
-}
 
 #[doc(hidden)]
 pub struct PrepaintState {

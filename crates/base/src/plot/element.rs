@@ -1,7 +1,5 @@
 //! The element behind every [`Plot`]: layout, appear and hover tracking and
 //! the overlay the plot returns from [`Plot::tooltip`].
-#[cfg(feature = "gpui-fast")]
-use gpui::IntoElement;
 use std::{cell::Cell, rc::Rc};
 
 use gpui::{
@@ -48,15 +46,6 @@ impl<P: Plot + 'static> PlotElement<P> {
     }
 }
 
-#[cfg(feature = "gpui-fast")]
-
-impl<P: Plot + 'static> IntoElement for PlotElement<P> {
-    type Element = Self;
-
-    fn into_element(self) -> Self::Element {
-        self
-    }
-}
 
 impl<P: Plot + 'static> Element for PlotElement<P> {
     type RequestLayoutState = ();

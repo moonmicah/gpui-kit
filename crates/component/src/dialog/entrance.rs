@@ -1,5 +1,3 @@
-#[cfg(any(feature = "gpui-fast", test))]
-use gpui::IntoElement;
 use gpui::{
     AnyElement, App, Bounds, Element, ElementId, GlobalElementId, InspectorElementId, LayoutId,
     Pixels, Window, point, px,
@@ -48,15 +46,6 @@ impl EntranceSurface {
     }
 }
 
-#[cfg(feature = "gpui-fast")]
-
-impl IntoElement for EntranceSurface {
-    type Element = Self;
-
-    fn into_element(self) -> Self::Element {
-        self
-    }
-}
 
 impl Element for EntranceSurface {
     type RequestLayoutState = ();

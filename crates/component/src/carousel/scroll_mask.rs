@@ -3,9 +3,6 @@
 //! The mask is deliberately a sibling of the scrolled content.  A mask nested
 //! inside the content would receive the content's scroll offset and would stop
 //! covering the viewport after the first scroll.
-#[cfg(feature = "gpui-fast")]
-use gpui::IntoElement;
-
 use std::cell::RefCell;
 use std::panic::Location;
 use std::rc::Rc;
@@ -46,15 +43,6 @@ impl CarouselScrollMask {
     }
 }
 
-#[cfg(feature = "gpui-fast")]
-
-impl IntoElement for CarouselScrollMask {
-    type Element = Self;
-
-    fn into_element(self) -> Self::Element {
-        self
-    }
-}
 
 impl Element for CarouselScrollMask {
     type RequestLayoutState = ();

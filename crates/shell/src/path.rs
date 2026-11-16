@@ -1,7 +1,7 @@
 //! Native GPUI path materialization.
 
 use gpui::{
-    App, Bounds, Element, ElementId, GlobalElementId, InspectorElementId, IntoElement, LayoutId,
+    App, Bounds, Element, ElementId, GlobalElementId, InspectorElementId, LayoutId,
     Pixels, Point, Refineable as _, Style, StyleRefinement, Window, point, px,
 };
 
@@ -129,14 +129,6 @@ impl NativePath {
             }
         }
         builder.build().ok()
-    }
-}
-
-impl IntoElement for NativePath {
-    type Element = Self;
-
-    fn into_element(self) -> Self::Element {
-        self
     }
 }
 

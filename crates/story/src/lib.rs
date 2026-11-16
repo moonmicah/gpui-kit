@@ -1,3 +1,5 @@
+extern crate gpui_kit as gpui;
+
 use gpui_fps::fps_monitor;
 use gpui_kit::component::{
     ActiveTheme, IconName, Root, Sizable as _, Size as ComponentSize, StyledExt as _,
@@ -245,7 +247,9 @@ pub fn init(cx: &mut App) {
     themes::init(cx);
     stories::init(cx);
 
-    #[cfg(not(target_family = "wasm"))]
+    // zed's reqwest_client implements zed GPUI's `HttpClient`; GPUI Fast ships its own
+    // snapshot of that trait, so the story app keeps the default client there.
+    #[cfg(all(not(target_family = "wasm"), not(feature = "gpui-fast")))]
     {
         let http_client =
             reqwest_client::ReqwestClient::user_agent("gpui-component/story").unwrap();

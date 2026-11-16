@@ -1,5 +1,3 @@
-#[cfg(feature = "gpui-fast")]
-use gpui::IntoElement;
 use gpui::{
     AnyElement, App, Bounds, Element, ElementId, FocusHandle, Global, GlobalElementId,
     InteractiveElement, Interactivity, LayoutId, ParentElement, Pixels, StatefulInteractiveElement,
@@ -137,16 +135,7 @@ impl<E: InteractiveElement + ParentElement + Styled + Element> FocusTrapContaine
     }
 }
 
-#[cfg(feature = "gpui-fast")]
-impl<E: InteractiveElement + ParentElement + Styled + Element> IntoElement
-    for FocusTrapContainer<E>
-{
-    type Element = Self;
 
-    fn into_element(self) -> Self::Element {
-        self
-    }
-}
 impl<E: InteractiveElement + ParentElement + Styled + Element> ParentElement
     for FocusTrapContainer<E>
 {
